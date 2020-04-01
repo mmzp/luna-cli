@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 const fs = require('fs');
 const modelGenerator = require('./lib/model_generator');
 const { scanDir } = require('./lib/utils');
