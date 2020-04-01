@@ -28,6 +28,7 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
+          scope: '@deluna'
       - run: npm config set '//registry.npmjs.org/:_authToken' '${{secrets.npm_token}}'
       - run: npm publish --access public
         env:
