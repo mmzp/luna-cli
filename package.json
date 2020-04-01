@@ -1,6 +1,6 @@
 {
     "name": "@deluna/luna-cli",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "luna 命令行工具",
     "bin": {
         "luna-model": "./gen_model.js"
