@@ -43,6 +43,9 @@ if (!modelPath) {
         }
     }
     fs.writeFileSync(modelPath + '/generated.ts', exportIndexContent);
+    if (!fs.existsSync(modelPath + '/custom.ts')) {
+        fs.writeFileSync(modelPath + '/custom.ts', '\n');
+    }
     if (!fs.existsSync(modelPath + '/index.ts')) {
         const content = `export * from './generated';\nexport * from './custom';\n`;
         fs.writeFileSync(modelPath + '/index.ts', content);
