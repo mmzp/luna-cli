@@ -1,0 +1,24 @@
+{
+    "name": "luna-cli",
+    "version": "0.1.0",
+    "description": "luna 命令行工具",
+    "bin": {
+        "luna-model": "./gen_model.js"
+    },
+    "scripts": {
+        "gen-model": "node ./gen_model.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "author": "mmzp <mmzp@qq.com>",
+    "license": "Apache-2.0",
+    "homepage": "",
+    "dependencies": {
+        "@k-tavern/sql-parser": "^0.0.6",
+        "ejs": "^3.0.2",
+        "pluralize": "^8.0.0",
+        "yargs": "^15.3.1"
+    }
+}

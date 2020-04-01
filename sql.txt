@@ -1,0 +1,35 @@
+CREATE TABLE `members` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL DEFAULT '',
+  `avatar` varchar(255) NOT NULL DEFAULT '',
+  `status` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '状态，0：正常',
+  `createdAt` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COMMENT='员工';
+
+CREATE TABLE `daily_online_records` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `day` char(10) NOT NULL DEFAULT '' COMMENT '日期，形如：2020-03-18',
+  `memberId` int(10) unsigned NOT NULL DEFAULT '0',
+  `lastActiveTime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '最近一次活跃时间',
+  `onlineTime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '上线时间',
+  `offlineTime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '下线时间',
+  `duration` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '在线时长',
+  `fixedDuration` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '扣除午休后的在线时长',
+  `createdAt` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_day_member` (`day`,`memberId`),
+  KEY `idx_member` (`memberId`)
+) ENGINE=InnoDB AUTO_INCREMENT=145 DEFAULT CHARSET=utf8 COMMENT='签到设备每日在线记录';
+
+CREATE TABLE `sign_in_devices` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `memberId` int(10) unsigned NOT NULL DEFAULT '0',
+  `name` varchar(50) NOT NULL DEFAULT '' COMMENT '设备名称',
+  `mac` varchar(50) NOT NULL DEFAULT '' COMMENT '设备MAC地址',
+  `createdAt` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '设备登记时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_member_id` (`memberId`),
+  KEY `idx_mac` (`mac`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='签到设备，每个员工最多登记一个签到设备即可';
