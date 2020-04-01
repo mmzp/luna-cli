@@ -90,7 +90,7 @@ export class <%= modelName %> extends Model {
             columns: modelScheme.columns,
             tableComment: modelScheme.tableComment,
         });
-        const filename = pluralize.singular(modelScheme.tableName) + '.gen.ts';
+        const filename = modelScheme.filename + '.gen.ts';
         fs.writeFileSync(path.resolve(modelPath, `${filename}`), context);
         exportIndexContent += `export { ${modelScheme.modelName} } from './${filename.slice(0, -3)}';\n`;
         modelCount++;
