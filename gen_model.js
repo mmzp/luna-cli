@@ -22,12 +22,12 @@ if (!modelPath) {
 const template =
 `import { table, primaryKey } from '../luna';
 import { Model, FindOptions } from '../db';
-
-<% if (tableComment) { %>// <%= tableComment %><% } %>
+<% if (tableComment) { %>
+// <%= tableComment %><% } %>
 @table('<%= tableName %>')
 export class <%= modelName %> extends Model {
     <% for(const column of columns) { %><% if (column.isPK) { %>@primaryKey<% } %>
-    <%= column.name %>?: <%= column.type %> = undefined;<% } %>
+    <%= column.name %>: <%= column.type %> = <%- column.initValue %>;<% } %>
 
     static async findOne(id: number | string): Promise<<%= modelName %> | undefined>;
     static async findOne(options: FindOptions): Promise<<%= modelName %> | undefined>;
@@ -48,15 +48,15 @@ export class <%= modelName %> extends Model {
     static async insert(info: <%= modelName %>): Promise<<%= modelName %>> {
         return Model._insert(info);
     }
-    static async update(id: number | string, info: <%= modelName %>): Promise<number>;
-    static async update(options: FindOptions, info: <%= modelName %>): Promise<number>;
-    static async update(p1: any, info: <%= modelName %>): Promise<number> {
-        return Model._update(p1, info);
+    static async update(id: number | string, info: object): Promise<number>;
+    static async update(options: FindOptions, info: object): Promise<number>;
+    static async update(p1: any, info: object): Promise<number> {
+        return Model._update(<%= modelName %>, p1, info);
     }
-    static async delete(id: number | string, info: <%= modelName %>): Promise<number>;
-    static async delete(options: FindOptions, info: <%= modelName %>): Promise<number>;
-    static async delete(p1: any, info: <%= modelName %>): Promise<number> {
-        return Model._delete(p1, info);
+    static async delete(id: number | string): Promise<number>;
+    static async delete(options: FindOptions): Promise<number>;
+    static async delete(p1: any): Promise<number> {
+        return Model._delete(<%= modelName %>, p1);
     }
     static async exec(sql: string, params?: any[]): Promise<number> {
         return Model._exec(sql, params);

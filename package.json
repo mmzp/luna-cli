@@ -6,7 +6,7 @@
         "luna-model": "./gen_model.js"
     },
     "scripts": {
-        "gen-model": "node ./gen_model.js"
+        "gen:model": "node ./gen_model.js --sql=./sql.txt --model=./model"
     },
     "repository": {
         "type": "git",

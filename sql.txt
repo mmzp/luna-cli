@@ -6,7 +6,7 @@ CREATE TABLE `members` (
   `createdAt` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uniq_name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COMMENT='员工';
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COMMENT='';
 
 CREATE TABLE `daily_online_records` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -33,3 +33,10 @@ CREATE TABLE `sign_in_devices` (
   UNIQUE KEY `uniq_member_id` (`memberId`),
   KEY `idx_mac` (`mac`)
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='签到设备，每个员工最多登记一个签到设备即可';
+
+CREATE TABLE `medias` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `filename` varchar(50) COMMENT '文件名',
+  `createdAt` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
