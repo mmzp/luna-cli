@@ -20,8 +20,7 @@ if (!modelPath) {
 }
 
 const template =
-`import { table, primaryKey } from '../luna';
-import { Model, FindOptions } from '../db';
+`import { table, primaryKey, Model, FindOptions } from '@deluna/luna';
 <% if (tableComment) { %>
 // <%= tableComment %><% } %>
 @table('<%= tableName %>')
