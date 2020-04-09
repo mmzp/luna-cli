@@ -54,7 +54,7 @@ export class <%= modelName %> extends Model {
     }
     static async delete(id: number | string, conn?: PoolConnection): Promise<number>;
     static async delete(options: FindOptions, conn?: PoolConnection): Promise<number>;
-    static async delete(p1: any): Promise<number> {
+    static async delete(p1: any, conn?: PoolConnection): Promise<number> {
         return Model._delete(<%= modelName %>, p1, conn);
     }
     static async exec(sql: string, params?: any[], conn?: PoolConnection): Promise<number> {
