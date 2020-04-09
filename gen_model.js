@@ -20,7 +20,15 @@ if (!modelPath) {
 }
 
 const template =
-`import { table, primaryKey, Model, FindOptions, BatchInsertOptions, BatchUpdateOptions, PoolConnection } from '@deluna/luna';
+`import {
+    table,
+    primaryKey,
+    Model,
+    FindOptions,
+    BatchInsertOptions,
+    BatchUpdateOptions,
+    PoolConnection,
+} from '@deluna/luna';
 <% if (tableComment) { %>
 // <%= tableComment %><% } %>
 @table('<%= tableName %>')
@@ -60,10 +68,18 @@ export class <%= modelName %> extends Model {
     static async exec(sql: string, params?: any[], conn?: PoolConnection): Promise<number> {
         return Model._exec(sql, params, conn);
     }
-    static async batchInsert(infoArr: <%= modelName %>[], options?: BatchInsertOptions, conn?: PoolConnection): Promise<number> {
+    static async batchInsert(
+        infoArr: <%= modelName %>[],
+        options?: BatchInsertOptions,
+        conn?: PoolConnection
+    ): Promise<number> {
         return Model._batchInsert(infoArr, options, conn);
     }
-    static async batchUpdate(infoArr: <%= modelName %>[], options?: BatchInsertOptions, conn?: PoolConnection): Promise<number> {
+    static async batchUpdate(
+        infoArr: <%= modelName %>[],
+        options?: BatchInsertOptions,
+        conn?: PoolConnection
+    ): Promise<number> {
         return Model._batchUpdate(infoArr, options, conn);
     }
 }
