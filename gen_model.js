@@ -71,14 +71,14 @@ export class <%= modelName %> extends Model {
     static async batchInsert(
         infoArr: <%= modelName %>[],
         options?: BatchInsertOptions,
-        conn?: PoolConnection
+        conn?: PoolConnection,
     ): Promise<number> {
         return Model._batchInsert(infoArr, options, conn);
     }
     static async batchUpdate(
         infoArr: <%= modelName %>[],
         options?: BatchInsertOptions,
-        conn?: PoolConnection
+        conn?: PoolConnection,
     ): Promise<number> {
         return Model._batchUpdate(infoArr, options, conn);
     }
