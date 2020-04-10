@@ -37,51 +37,43 @@ export class <%= modelName %> extends Model {
     <% for(const column of columns) { %><% if (column.isPK) { %>@primaryKey<% } %>
     <%= column.name %>: <%= column.type %> = <%- column.initValue %>;<% } %>
 
-    static async findOne(id: number | string, conn?: PoolConnection): Promise<<%= modelName %> | undefined>;
-    static async findOne(options: FindOptions, conn?: PoolConnection): Promise<<%= modelName %> | undefined>;
-    static async findOne(p1: any, conn?: PoolConnection) {
-        return Model._findOne(<%= modelName %>, p1, conn);
+    static async findOne(id: number | string, options?: FindOptions): Promise<<%= modelName %> | undefined>;
+    static async findOne(options: FindOptions): Promise<<%= modelName %> | undefined>;
+    static async findOne(p1: any, p2?: any) {
+        return Model._findOne(<%= modelName %>, p1, p2);
     }
-    static async findAll(idArr: number[] | string[], conn?: PoolConnection): Promise<<%= modelName %>[]>;
-    static async findAll(options: FindOptions, conn?: PoolConnection): Promise<<%= modelName %>[]>;
-    static async findAll(p1: any, conn?: PoolConnection) {
-        return Model._findAll(<%= modelName %>, p1, conn);
+    static async findAll(idArr: number[] | string[], options?: FindOptions): Promise<<%= modelName %>[]>;
+    static async findAll(options: FindOptions): Promise<<%= modelName %>[]>;
+    static async findAll(p1: any, p2?: any) {
+        return Model._findAll(<%= modelName %>, p1, p2);
     }
-    static async fetch(sql: string, params?: any[], conn?: PoolConnection): Promise<<%= modelName %> | undefined> {
-        return Model._fetch(<%= modelName %>, sql, params, conn);
+    static async fetch(sql: string, params?: any[], options?: FindOptions): Promise<<%= modelName %> | undefined> {
+        return Model._fetch(<%= modelName %>, sql, params, options);
     }
-    static async fetchAll(sql: string, params?: any[], conn?: PoolConnection): Promise<<%= modelName %>[]> {
-        return Model._fetchAll(<%= modelName %>, sql, params, conn);
+    static async fetchAll(sql: string, params?: any[], options?: FindOptions): Promise<<%= modelName %>[]> {
+        return Model._fetchAll(<%= modelName %>, sql, params, options);
     }
-    static async insert(info: <%= modelName %>, options?: InsertOptions, conn?: PoolConnection): Promise<<%= modelName %>> {
-        return Model._insert(info, options, conn);
+    static async insert(info: <%= modelName %>, options?: InsertOptions): Promise<<%= modelName %>> {
+        return Model._insert(info, options);
     }
-    static async update(id: number | string, info: object, conn?: PoolConnection): Promise<number>;
-    static async update(options: FindOptions, info: object, conn?: PoolConnection): Promise<number>;
-    static async update(p1: any, info: object, conn?: PoolConnection): Promise<number> {
-        return Model._update(<%= modelName %>, p1, info, conn);
+    static async update(id: number | string, info: object, options?: FindOptions): Promise<number>;
+    static async update(options: FindOptions, info: object): Promise<number>;
+    static async update(p1: any, info: object, p2?: any): Promise<number> {
+        return Model._update(<%= modelName %>, p1, info, p2);
     }
-    static async delete(id: number | string, conn?: PoolConnection): Promise<number>;
-    static async delete(options: FindOptions, conn?: PoolConnection): Promise<number>;
-    static async delete(p1: any, conn?: PoolConnection): Promise<number> {
-        return Model._delete(<%= modelName %>, p1, conn);
+    static async delete(id: number | string, options?: FindOptions): Promise<number>;
+    static async delete(options: FindOptions): Promise<number>;
+    static async delete(p1: any, p2?: any): Promise<number> {
+        return Model._delete(<%= modelName %>, p1, p2);
     }
-    static async exec(sql: string, params?: any[], conn?: PoolConnection): Promise<number> {
-        return Model._exec(sql, params, conn);
+    static async exec(sql: string, params?: any[], options?: FindOptions): Promise<number> {
+        return Model._exec(sql, params, options);
     }
-    static async batchInsert(
-        infoArr: <%= modelName %>[],
-        options?: BatchInsertOptions,
-        conn?: PoolConnection,
-    ): Promise<number> {
-        return Model._batchInsert(infoArr, options, conn);
+    static async batchInsert(infoArr: <%= modelName %>[], options?: BatchInsertOptions): Promise<number> {
+        return Model._batchInsert(infoArr, options);
     }
-    static async batchUpdate(
-        infoArr: <%= modelName %>[],
-        options?: BatchInsertOptions,
-        conn?: PoolConnection,
-    ): Promise<number> {
-        return Model._batchUpdate(infoArr, options, conn);
+    static async batchUpdate(infoArr: <%= modelName %>[], options?: BatchUpdateOptions): Promise<number> {
+        return Model._batchUpdate(infoArr, options);
     }
 }
 `;
