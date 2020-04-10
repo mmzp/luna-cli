@@ -25,6 +25,7 @@ const template =
     primaryKey,
     Model,
     FindOptions,
+    InsertOptions,
     BatchInsertOptions,
     BatchUpdateOptions,
     PoolConnection,
@@ -52,8 +53,8 @@ export class <%= modelName %> extends Model {
     static async fetchAll(sql: string, params?: any[], conn?: PoolConnection): Promise<<%= modelName %>[]> {
         return Model._fetchAll(<%= modelName %>, sql, params, conn);
     }
-    static async insert(info: <%= modelName %>, conn?: PoolConnection): Promise<<%= modelName %>> {
-        return Model._insert(info, conn);
+    static async insert(info: <%= modelName %>, options?: InsertOptions, conn?: PoolConnection): Promise<<%= modelName %>> {
+        return Model._insert(info, options, conn);
     }
     static async update(id: number | string, info: object, conn?: PoolConnection): Promise<number>;
     static async update(options: FindOptions, info: object, conn?: PoolConnection): Promise<number>;
